@@ -25,4 +25,9 @@ public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
         return FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges)
             .OrderBy(e => e.Name).ToList();
     }
+
+    public void DeleteEmployee(Employee employee)
+    {
+        Delete(employee);
+    }
 }
