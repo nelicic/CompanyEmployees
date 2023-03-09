@@ -4,6 +4,7 @@ using Repository;
 using Service.Contracts;
 using Service;
 using Microsoft.EntityFrameworkCore;
+using CompanyEmployees.Formatter;
 
 namespace CompanyEmployees.Extensions;
 
@@ -47,5 +48,10 @@ public static class ServiceExtensions
         {
             options.UseSqlServer(configuration.GetConnectionString("sqlConnection"));
         });
+    }
+
+    public static IMvcBuilder AddCustomCSVFormatter(this IMvcBuilder builder)
+    {
+        return builder.AddMvcOptions(config => config.OutputFormatters.Add(new CsvOutputFormatter()));
     }
 }
