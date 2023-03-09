@@ -1,4 +1,5 @@
-﻿using Contracts;
+﻿using System.Reflection.Metadata.Ecma335;
+using Contracts;
 using Entities.Models;
 
 namespace Repository;
@@ -15,13 +16,16 @@ public class CompanyRepository : RepositoryBase<Company>, ICompanyRepository
 
     public IEnumerable<Company> GetAllCompanies(bool trackChanges)
     {
-        return FindAll(trackChanges).OrderBy(c => c.Name)
-            .ToList();
+        return FindAll(trackChanges).OrderBy(c => c.Name).ToList();
+    }
+
+    public IEnumerable<Company> GetByIds(IEnumerable<Guid> ids, bool trackChanges)
+    {
+        return FindByCondition(x => ids.Contains(x.Id), trackChanges).ToList();
     }
 
     public Company GetCompany(Guid companyId, bool trackChanges)
     {
-        return FindByCondition(c => c.Id.Equals(companyId), trackChanges)
-            .SingleOrDefault();
+        return FindByCondition(c => c.Id.Equals(companyId), trackChanges).SingleOrDefault();
     }
 }
