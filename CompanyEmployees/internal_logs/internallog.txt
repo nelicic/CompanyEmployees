@@ -7169,3 +7169,28 @@
 2023-03-11 01:02:04.7548 Trace  Scanning Property LineEnding 'Default' NLog.Targets
 2023-03-11 01:02:04.7548 Trace FileTarget(Name=logfile) has 2 layouts
 2023-03-11 01:02:04.7548 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.SingleProcessFileAppender+Factory
+2023-03-11 01:03:34.4619 Info AppDomain Shutting down. LogFactory closing...
+2023-03-11 01:03:34.4619 Debug Stopping file watching for path 'E:\WebApp\CompanyEmployees\CompanyEmployees' filter 'nlog.config'
+2023-03-11 01:03:34.4619 Trace Flushing all 1 targets...
+2023-03-11 01:03:34.4619 Trace ForEachItemInParallel() 1 items
+2023-03-11 01:03:34.4704 Trace FileTarget(Name=logfile): FlushAsync
+2023-03-11 01:03:34.4704 Trace Continuation invoked: 
+2023-03-11 01:03:34.4704 Trace Parallel task completed. 0 items remaining
+2023-03-11 01:03:34.4704 Debug Flush completed
+2023-03-11 01:03:34.4704 Trace FileTarget(Name=logfile): FlushAsync Done
+2023-03-11 01:03:34.4704 Debug Closing logging configuration...
+2023-03-11 01:03:34.4704 Trace Closing FileTarget(Name=logfile)
+2023-03-11 01:03:34.4704 Debug FileTarget(Name=logfile): Closing...
+2023-03-11 01:03:34.4704 Debug FileTarget(Name=logfile): Closed.
+2023-03-11 01:03:34.4704 Trace Closing .\logs\${shortdate}_logfile.txt
+2023-03-11 01:03:34.4704 Trace Closing Layout Renderer: ${literal}
+2023-03-11 01:03:34.4704 Trace Closing Layout Renderer: ${shortdate}
+2023-03-11 01:03:34.4704 Trace Closing Layout Renderer: ${literal}
+2023-03-11 01:03:34.4704 Trace Closing ${longdate} ${level:uppercase=true} ${message}
+2023-03-11 01:03:34.4704 Trace Closing Layout Renderer: ${longdate}
+2023-03-11 01:03:34.4704 Trace Closing Layout Renderer: ${literal}
+2023-03-11 01:03:34.4704 Trace Closing Layout Renderer: ${level}
+2023-03-11 01:03:34.4704 Trace Closing Layout Renderer: ${literal}
+2023-03-11 01:03:34.4704 Trace Closing Layout Renderer: ${message}
+2023-03-11 01:03:34.4704 Debug Finished closing logging configuration.
+2023-03-11 01:03:34.4704 Info LogFactory has been closed.
