@@ -9,6 +9,7 @@ using Microsoft.Extensions.Options;
 using Presentation.ActionFilters;
 using Service;
 using Shared.DataTransferObjects;
+using CompanyEmployees.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,8 @@ builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<ValidationFilterAttribute>();
 builder.Services.AddScoped<IDataShaper<EmployeeDto>, DataShaper<EmployeeDto>>();
+builder.Services.AddScoped<IEmployeeLinks, EmployeeLinks>();
+builder.Services.AddScoped<ValidateMediaTypeAttribute>();
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
@@ -46,6 +49,8 @@ builder.Services.AddControllers(config =>
 }).AddXmlDataContractSerializerFormatters()
     .AddCustomCSVFormatter()
     .AddApplicationPart(typeof(AssemblyReference).Assembly);
+
+builder.Services.AddCustomMediaTypes();
 
 var app = builder.Build();
 
