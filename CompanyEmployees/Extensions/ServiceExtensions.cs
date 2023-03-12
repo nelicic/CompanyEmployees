@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using CompanyEmployees.Formatter;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc.Versioning;
+using Presentation.Controllers;
 
 namespace CompanyEmployees.Extensions;
 
@@ -84,6 +86,21 @@ public static class ServiceExtensions
                 xmlOutputFormatter.SupportedMediaTypes
                 .Add("application/vnd.codemaze.apiroot+xml");
             }
+        });
+    }
+
+    public static void ConfigureVersioning(this IServiceCollection services)
+    {
+        services.AddApiVersioning(opt =>
+        {
+            opt.ReportApiVersions = true;
+            opt.AssumeDefaultVersionWhenUnspecified = true;
+            opt.DefaultApiVersion = new ApiVersion(1, 0);
+            opt.ApiVersionReader = new HeaderApiVersionReader("api-version");
+            opt.Conventions.Controller<CompaniesController>()
+                .HasApiVersion(new ApiVersion(1, 0));
+            opt.Conventions.Controller<CompaniesV2Controller>()
+                .HasDeprecatedApiVersion(new ApiVersion(2, 0));
         });
     }
 }
