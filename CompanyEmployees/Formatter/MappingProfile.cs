@@ -21,6 +21,6 @@ public class MappingProfile : Profile
 
         CreateMap<CompanyForUpdateDto, Company>();
 
-
+        CreateMap<UserForRegistrationDto, User>();
     }
 }
