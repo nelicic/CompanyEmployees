@@ -11,11 +11,15 @@ namespace Presentation.Controllers;
 [Route("api/companies")]
 [ApiController]
 //[ResponseCache(CacheProfileName = "120SecondsDuration")]
+[ApiExplorerSettings(GroupName = "v1")]
 public class CompaniesController : ControllerBase
 {
     private readonly IServiceManager _service;
     public CompaniesController(IServiceManager service) => _service = service;
 
+    [ProducesResponseType(201)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(422)]
     [HttpGet(Name = "GetCompanies")]
     [Authorize(Roles = "Manager")]
     public async Task<IActionResult> GetCompanies()
