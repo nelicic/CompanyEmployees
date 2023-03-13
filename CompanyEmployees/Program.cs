@@ -46,6 +46,7 @@ builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureJWT(builder.Configuration);
 builder.Services.AddJwtConfiguration(builder.Configuration);
+builder.Services.ConfigureSwagger();
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
@@ -90,6 +91,13 @@ app.UseHttpCacheHeaders();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Code Maze API v1");
+    c.SwaggerEndpoint("/swagger/v2/swagger.json", "Code Maze API v2");
+});
 
 app.MapControllers();
 
