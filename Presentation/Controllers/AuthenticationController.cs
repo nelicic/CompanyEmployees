@@ -36,11 +36,13 @@ public class AuthenticationController : ControllerBase
 
     [HttpPost("login")]
     [ServiceFilter(typeof(ValidationFilterAttribute))]
-    public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto userForAuthenticationDto)
+    public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
     {
-        if (!await _service.AuthenticationService.ValidateUser(userForAuthenticationDto))
+        if (!await _service.AuthenticationService.ValidateUser(user))
             return Unauthorized();
 
-        return Ok(new { Token = await _service.AuthenticationService.CreateToken()});
+        var tokenDto = await _service.AuthenticationService.CreateToken(populateExp: true);
+
+        return Ok(tokenDto);
     }
 }
